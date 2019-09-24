@@ -134,6 +134,7 @@ this.racketYPosition = 1500;
     // ------------------------------
 String directionBallIsMoving = "right";
 String directionofBall = "down";
+String personTapped = "";
 
     // 1. Tell Android the (x,y) positions of your sprites
     public void updatePositions() {
@@ -165,7 +166,8 @@ String directionofBall = "down";
                 directionofBall = "up";
             }
 
-        }else if (directionofBall.contentEquals("up")){
+        }
+        else if (directionofBall.contentEquals("up")){
             this.ballYPosition = this.ballYPosition -100;
             if(ballYPosition <= 0){
                 directionofBall = "down";
@@ -186,8 +188,21 @@ String directionofBall = "down";
             }
         }
 */
+// racket position
+         // this.racketXPosition = this.racketXPosition - 10;
+
+        if (personTapped.contentEquals("right")){
+            this.racketXPosition = this.racketXPosition + 10;
+
+        }else if (personTapped.contentEquals("left")){
+            this.racketXPosition = this.racketXPosition - 10;
+
+        }
 
 
+if(ballYPosition>  racketYPosition){
+    directionofBall = "up";
+}
 
 
 
@@ -267,11 +282,12 @@ String directionofBall = "down";
             float fingerYPosition = event.getY();
             int middle = this.screenWidth/2;
 
-if (fingerXPosition < middle ){
+if (fingerXPosition <= middle ){
+    personTapped = "left";
 
 
 }else if (fingerXPosition > middle){
-
+    personTapped = "right";
 }
 
             Log.d(TAG ,"Pressed" + fingerXPosition + "," + fingerYPosition);
