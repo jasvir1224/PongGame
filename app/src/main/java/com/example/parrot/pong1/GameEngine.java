@@ -127,19 +127,78 @@ this.ballYPosition = screenHeight/2;
     // GAME ENGINE FUNCTIONS
     // - update, draw, setFPS
     // ------------------------------
-
+String directionBallIsMoving = "right";
+String directionofBall = "down";
 
     // 1. Tell Android the (x,y) positions of your sprites
     public void updatePositions() {
         // @TODO: Update the position of the sprites
         Log.d(TAG,"HEllo" );
         //calculate new position
-this.ballXPosition = this.ballXPosition + 10;
-//this.ballYPosition = this.ballYPosition -10;
-        if(this.ballXPosition >= this.screenWidth){
-            this.ballXPosition = this.ballXPosition -20;
+//Right and Left
+//        if(directionBallIsMoving.contentEquals("right")){
+//
+//            this.ballXPosition = this.ballXPosition+10;
+//
+//            if(this.ballXPosition > this.screenWidth){
+//                directionBallIsMoving = "left";
+//            }
+//        } else if(directionBallIsMoving.contentEquals("left")){
+//            this.ballXPosition =this.ballXPosition-10;
+//
+//            if(this.ballXPosition <=0){
+//                directionBallIsMoving = "right";
+//
+//            }
+//        }
 
+        //Up and down
+
+        if (directionofBall.contentEquals("down")){
+            this.ballYPosition = this.ballYPosition + 100;
+            if(this.ballYPosition >= this.screenHeight){
+                directionofBall = "up";
+            }
+
+        }else if (directionofBall.contentEquals("up")){
+            this.ballYPosition = this.ballYPosition -100;
+            if(ballYPosition <= 0){
+                directionofBall = "down";
+            }
         }
+
+
+
+
+
+
+
+       /* if(directionofBall.contentEquals("down")){
+            this.ballYPosition = this.ballYPosition +10;
+
+            if(this.ballYPosition > this.screenHeight){
+                directionofBall = "up";
+            }
+        }else if(directionofBall.contentEquals("up")){
+            this.ballYPosition = this.ballYPosition-10;
+            if (this.ballYPosition <=0){
+                directionofBall= "down";
+            }
+        }
+*/
+
+
+
+
+
+
+
+//// this.ballXPosition = this.ballXPosition + 10;
+////this.ballYPosition = this.ballYPosition -10;
+//        if(this.ballXPosition >= this.screenWidth){
+//            this.ballXPosition = this.ballXPosition -100;
+//
+//        }
 
         //DEBUG
         Log.d(TAG, "XPOS" + this.ballXPosition);
