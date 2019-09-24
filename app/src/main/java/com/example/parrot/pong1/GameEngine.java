@@ -31,6 +31,9 @@ public class GameEngine extends SurfaceView implements Runnable {
     int screenHeight;
     int screenWidth;
 
+    int racketXPosition;
+    int racketYPosition;
+
     // game state
     boolean gameIsRunning;
 
@@ -70,6 +73,8 @@ public class GameEngine extends SurfaceView implements Runnable {
 this.ballXPosition = screenWidth/2;
 this.ballYPosition = screenHeight/2;
 
+this.racketXPosition = 500;
+this.racketYPosition = 1500;
         this.printScreenInfo();
 
         // @TODO: Add your sprites to this section
@@ -133,7 +138,7 @@ String directionofBall = "down";
     // 1. Tell Android the (x,y) positions of your sprites
     public void updatePositions() {
         // @TODO: Update the position of the sprites
-        Log.d(TAG,"HEllo" );
+//        Log.d(TAG,"HEllo" );
         //calculate new position
 //Right and Left
 //        if(directionBallIsMoving.contentEquals("right")){
@@ -168,12 +173,7 @@ String directionofBall = "down";
         }
 
 
-
-
-
-
-
-       /* if(directionofBall.contentEquals("down")){
+        /* if(directionofBall.contentEquals("down")){
             this.ballYPosition = this.ballYPosition +10;
 
             if(this.ballYPosition > this.screenHeight){
@@ -201,7 +201,7 @@ String directionofBall = "down";
 //        }
 
         //DEBUG
-        Log.d(TAG, "XPOS" + this.ballXPosition);
+      //  Log.d(TAG, "XPOS" + this.ballXPosition);
 
 
         // @TODO: Collision detection code
@@ -223,10 +223,13 @@ String directionofBall = "down";
 
             //@TODO: Draw the sprites (rectangle, circle, etc)
 //draw rectangle
-            this.canvas.drawRect(ballXPosition,
-                                 ballYPosition,
-                                 ballXPosition+50,
-                                 ballYPosition+50,paintbrush);
+            this.canvas.drawRect(this.ballXPosition,
+                                 this.ballYPosition,
+                                 this.ballXPosition+50,
+                                 this.ballYPosition+50,paintbrush);
+            paintbrush.setColor(Color.YELLOW);
+
+            this.canvas.drawRect(this.racketXPosition,this.racketYPosition, this.racketXPosition+400,this.racketYPosition+30,paintbrush);
 
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
@@ -234,6 +237,9 @@ String directionofBall = "down";
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
+
+            //draw racket
+
         }
     }
 
@@ -255,8 +261,20 @@ String directionofBall = "down";
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
+
         if (userAction == MotionEvent.ACTION_DOWN) {
-            // user pushed down on screen
+            float fingerXPosition = event.getX();
+            float fingerYPosition = event.getY();
+            int middle = this.screenWidth/2;
+
+if (fingerXPosition < middle ){
+
+
+}else if (fingerXPosition > middle){
+
+}
+
+            Log.d(TAG ,"Pressed" + fingerXPosition + "," + fingerYPosition);
         }
         else if (userAction == MotionEvent.ACTION_UP) {
             // user lifted their finger
